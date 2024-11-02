@@ -1,0 +1,21 @@
+-> the cipher needs to be customisable
+-> add an option of '-h' so that it can hide the file
+-> add an option to change the extension of the file (default is the original extension)
+-> add an option to change the name (default is the original extension) 
+-> add an option to change the perms of the file so a passwd would be required to access it
+-> to decipher it add another layer of security which would ask for a passwd (implement after basic stuff 
+has been done)
+
+to cipher:
+
+1) read the file 
+2) apply some cipher to the file content
+3) delete the original file
+4) write down the ciphered stuff in a new file with the same name and extension
+5) save the properties in the file in ciphered a way 
+
+to decipher:
+
+1) read the ciphered file
+2) decipher the stuff
+3) read the properies of the file and make a new file in the exact same way and write down the contents 
