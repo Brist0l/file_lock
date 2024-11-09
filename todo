@@ -8,9 +8,9 @@ has been done)
 
 to cipher:
 
-1) read the file 
-2) apply some cipher to the file content
-3) delete the original file
+1) read the file -> read.c 
+2) apply some cipher to the file content -> cipher.c
+3) delete the original file -> read.c
 4) write down the ciphered stuff in a new file with the same name and extension
 5) save the properties in the file in ciphered a way 
 
@@ -19,3 +19,8 @@ to decipher:
 1) read the ciphered file
 2) decipher the stuff
 3) read the properies of the file and make a new file in the exact same way and write down the contents 
+
+to implemnt later:
+
+1) A dynamically increasing/decreasing memory space
+2) Add a flag for wether the user wants the file deleted or not
