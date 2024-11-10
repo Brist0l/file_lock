@@ -6,18 +6,18 @@
 -> to decipher it add another layer of security which would ask for a passwd (implement after basic stuff 
 has been done)
 
-to cipher:
+to cipher: (done)
 
 1) read the file -> read.c 
 2) apply some cipher to the file content -> cipher.c
 3) delete the original file -> read.c
-4) write down the ciphered stuff in a new file with the same name and extension
-5) save the properties in the file in ciphered a way 
+4) write down the ciphered stuff in a new file with the same name and extension -> read.c
+5) write down properties like which cipher is there and how many times has it has been encrypted
 
 to decipher:
 
-1) read the ciphered file
-2) decipher the stuff
+1) read the ciphered file -> read.c
+2) decipher the stuff -> cipher.c
 3) read the properies of the file and make a new file in the exact same way and write down the contents 
 
 to implemnt later:

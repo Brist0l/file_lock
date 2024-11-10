@@ -29,7 +29,7 @@ char* caser(char *input){
 				continue;
 			}
 			
-			else if(index >=23)
+			else if(index >= (26 - SHIFT))
 				index = (index + SHIFT) - 26;
 			else 
 				index = index + SHIFT;
@@ -43,3 +43,31 @@ char* caser(char *input){
 
 }
 
+char* decaser(char *input){
+	int letters[26];
+	int i,j=97; //
+	int index;
+	
+	for(i = 0; i < 26;i++)//stores letters in the array
+		letters[i] = j++;
+	for(i = 0;*(input+i) != '\0';i++){
+		index = getindex(*(input+i),letters);
+		if(index>= 0){
+			if(index == 69){
+				*(output+i) = ' ';
+				continue;
+			}
+			
+			else if(index <= SHIFT)
+				index = (index - SHIFT) + 26;
+			else 
+				index = index - SHIFT;
+			
+			*(output + i) = letters[index];
+		}
+	}
+	*(output+i) = '\0';
+		
+	return output;
+
+}
