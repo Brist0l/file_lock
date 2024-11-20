@@ -1,5 +1,3 @@
-#include<stdio.h>
-
 #define SHIFT 3
 
 char output[100];

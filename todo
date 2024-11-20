@@ -5,6 +5,7 @@
 -> add an option to change the perms of the file so a passwd would be required to access it
 -> to decipher it add another layer of security which would ask for a passwd (implement after basic stuff 
 has been done)
+-> add an option for folders also which would recurse over all the files in the folder
 
 to cipher: (done)
 
@@ -20,7 +21,13 @@ to decipher:
 2) decipher the stuff -> cipher.c
 3) read the properies of the file and make a new file in the exact same way and write down the contents 
 
+parsing:
+1) argv needs to be piped to parser.py 
+
+
 to implemnt later:
 
 1) A dynamically increasing/decreasing memory space
 2) Add a flag for wether the user wants the file deleted or not
+
+

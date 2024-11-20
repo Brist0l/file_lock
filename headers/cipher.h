@@ -1,5 +1,5 @@
 #ifndef CIPHER_H
-#define CIHPER_H
+#define CIPHER_H
 
 extern char *output;
 char* caser(char *input);
