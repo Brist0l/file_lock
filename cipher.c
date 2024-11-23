@@ -1,3 +1,5 @@
+#include<stdio.h>
+
 #define SHIFT 3
 
 char output[100];
@@ -65,6 +67,7 @@ char* decaser(char *input){
 		}
 	}
 	*(output+i) = '\0';
+	*(output+i+1) = '\n';
 		
 	return output;
 
