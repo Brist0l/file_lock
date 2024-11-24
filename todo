@@ -22,12 +22,9 @@ to decipher:
 3) read the properies of the file and make a new file in the exact same way and write down the contents 
 
 parsing:
-1) argv needs to be piped to parser.py 
-
+1) argv needs to be piped to parser.py -> done
 
 to implemnt later:
 
 1) A dynamically increasing/decreasing memory space
-2) Add a flag for wether the user wants the file deleted or not
-
-
+2) Add a flag for wether the user wants the file deleted or not (done)

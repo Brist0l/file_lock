@@ -10,10 +10,16 @@ void *getmem(size_t len);
 int main(int argc,char *argv[]){
 	struct t_thing args = sendargs(argc,argv);	
 
+	//sliced_args:
+	//1 -> file name
+	//2 -> decipher flag
+	//3 -> cipher flag
+	//4 -> delete flag
 	int to_decipher = pyboolconverter(args.sliced_args[2]);
 	int to_cipher = pyboolconverter(args.sliced_args[1]);
+	int to_delete = pyboolconverter(args.sliced_args[3]);
 	FILE *file;
-	const char *file_name = args.sliced_args[0];	
+	char *file_name = args.sliced_args[0];	
 	char *str = (char *)getmem(1024);
 	
 //	printf("%s\t%d\t%d\n",file_name,to_decipher,to_cipher);
@@ -43,13 +49,20 @@ int main(int argc,char *argv[]){
 	char new_line = '\n';
 	strncat(str,&new_line,1);
 
-//	printf("%s",str);	
+//	printf("%s",str);
 	fclose(file);
-
-	remove(file_name);//deletes the file
 	
+	if(to_delete == 1)
+		remove(file_name);//deletes the file
+	else{
+//		printf("%c\n",file_name[strlen(file_name)-1]);
+		if(file_name[strlen(file_name)-1] != '_')
+			strcat(file_name,"_");
+	}
+	
+//	printf("Filename:%s\n",file_name);
 
-	file = fopen(file_name,"a");
+	file = fopen(file_name,"w+");
 	fprintf(file, str);
 	fclose(file);
 }
