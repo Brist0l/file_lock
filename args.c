@@ -2,6 +2,20 @@
 #include<string.h>
 #include<stdlib.h>
 
+void gethelp(char *ok,char *path){
+
+	FILE *fp = popen(ok,"r");
+
+  	if (fp == NULL){
+    		printf("Failed to run command\n" );
+    		exit(1);
+  	}
+
+	while (fgets(path,1024, fp) != NULL)
+		printf("%s\n",path);
+	exit(0);
+}
+
 struct t_thing{
 	char sliced_args[1024][1024];
 };
@@ -16,18 +30,23 @@ struct t_thing sendargs(int argc,char *args[]){
 
 	int word = 0;
 	size_t j;
+	
 
 	for(int i = 1; i < argc;i++){
 		strcat(ok," ");
 		strcat(ok,args[i]);
+		if(strcmp(args[i],"-h") == 0|| strcmp(args[i],"--help") == 0)
+			gethelp(ok,path);
 	}
 	
   	fp = popen(ok,"r");
 
-  	if (fp == NULL) {
+  	if (fp == NULL){
     		printf("Failed to run command\n" );
     		exit(1);
   	}
+
+//	printf("%s\n",ok);
 
 	while (fgets(path,1024, fp) != NULL){
 
