@@ -7,7 +7,7 @@
 
 void *getmem(size_t len);
 void prepend(char *s,const char* t);
-struct t_thing slice(char *s,const char t);
+char *slice(char *s,const char t,int part);
 
 int main(int argc,char *argv[]){
 	struct t_thing args = sendargs(argc,argv);	
@@ -18,19 +18,26 @@ int main(int argc,char *argv[]){
 	//2 -> decipher flag
 	//3 -> delete flag
 	//4 -> hide flag
+	//5 -> name flag
+	//6 -> extension flag
 	int to_decipher = pyboolconverter(args.sliced_args[2]);
 	int to_cipher = pyboolconverter(args.sliced_args[1]);
 	int to_delete = pyboolconverter(args.sliced_args[3]);
 	int to_hide = pyboolconverter(args.sliced_args[4]);
+	char *name = args.sliced_args[5];
+	char *ext = args.sliced_args[6];
 	FILE *file;
-	char *file_name = args.sliced_args[0];	
+	char *file_name_org = args.sliced_args[0];	
+	char *file_name;
 	char *str = (char *)getmem(1024);
-	
-//	printf("%s\t%d\t%d\n",file_name,to_decipher,to_cipher);
+	int name_fl = 0,ext_fl = 0;
 
-	file = fopen(file_name,"r");
+//	printf("%s\t%d\t%d\n",file_name,to_decipher,to_cipher);
+	printf("%s\n",ext);
+
+	file = fopen(file_name_org,"r");
 	if(file == NULL){
-		printf("No file found with the name %s\n",file_name);		
+		printf("No file found with the name %s\n",file_name_org);		
 		return -1;
 	}
 
@@ -53,18 +60,32 @@ int main(int argc,char *argv[]){
 	char new_line = '\n';
 	strncat(str,&new_line,1);
 
+	char *first = slice(file_name_org,'.',0);
+	char *second = slice(file_name_org,'.',1);
+	
+	if(strcmp(name,"None") != 0){
+		name_fl = 1;	
+		strcpy(first,name);
+	}
+
+	if(strcmp(ext,"None") != 0){
+		ext_fl = 1;
+		strcpy(second,ext);
+	}
+
+	file_name = strcat(first,second);
+	printf("%s\n",file_name);
+
 //	printf("%s",str);
 	fclose(file);
 	
 	if(to_delete == 1)
-		remove(file_name);//deletes the file
-	else{
+		remove(file_name_org);//deletes the file
+	else
 //		printf("%c\n",file_name[strlen(file_name)-1]);
-		if(file_name[strlen(file_name)-1] != '_')
-			strcat(file_name,"_");
-	}
-	
-//	printf("Filename:%s\n",file_name);
+		if (name_fl == 0 && ext_fl == 0)
+			if(file_name[strlen(file_name)-1] != '_')
+				strcat(file_name,"_");
 	
 	if(to_hide == 1)
 		prepend(file_name,".");
@@ -86,19 +107,21 @@ void prepend(char *s,const char* t){
 	memcpy(s,t,len);
 }
 
-struct t_thing slice(char *s,const char t){
-	struct t_thing strings;
+char *slice(char *s,const char t,int part){
 	size_t len = strlen(s);	
+	char *first = getmem(1024),*second= getmem(1024);
 	size_t i,j;
 	for(i = 0;i <= len;i++)
 		if(*(s+i) == t){
 			for(j = 0;j < i;j++)
-				strings.sliced_args[0][j]=*(s+j);
+				*(first+j) = *(s+j);
 			break;	
 		}
 	for(j = 0;j <= len-i;j++)
-		strings.sliced_args[1][j] = *(s+i+j);
-
-	return strings;
+		*(second+j)= *(s+i+j);
+	
+	if(part == 0)
+		return first;
+	else
+		return second;
 }
-

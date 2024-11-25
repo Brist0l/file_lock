@@ -21,8 +21,8 @@ to implemnt later:
 2) Add a flag for wether the user wants the file deleted or not (done)
 3) add an option of '-s' so that it can hide the file (done)
 4) customise the cipher
-5) add an option to change the extension of the file (default is the original extension)
-6) add an option to change the name (default is the original name) 
+5) add an option to change the extension of the file (default is the original extension) (done)
+6) add an option to change the name (default is the original name) (done) 
 7) add an option to change the perms of the file so a passwd would be required to access it
 8) to decipher it add another layer of security which would ask for a passwd (implement after basic stuff 
 has been done)
