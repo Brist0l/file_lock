@@ -96,8 +96,9 @@ int main(int argc,char *argv[]){
 	fclose(file);
 }
 
-void *getmem(size_t len){// make this into dynamic thing 
-	char *data = malloc(sizeof(char) * (len +1));
+void *getmem(size_t len){
+	void *data = malloc(len +1);
+	//printf("Data used is:%ld\n",sizeof(data));
 	return data;
 }
 
